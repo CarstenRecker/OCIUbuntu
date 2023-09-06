@@ -1,5 +1,9 @@
 #!/bin/bash
 
+arch=dpkg --print-architecture
+echo $arch
+sleep 10
+
 # Update the OS
 apt-get update -y
 apt-get upgrade -y
