@@ -1,12 +1,9 @@
 #!/bin/bash
-
-
 # Check if script is run as root
 if [ "$EUID" -ne 0 ]
   then echo "Please run as root"
   exit
 fi
-
 # Set restart of services to automatic, when using apt
 # Check if needrestart is installed
 if dpkg -l | grep needrestart > /dev/null; then
@@ -15,20 +12,13 @@ if dpkg -l | grep needrestart > /dev/null; then
 else
     echo "needrestart is not installed."
 fi
-
-
 # Update the OS
 apt-get update -y
 apt-get upgrade -y
-
 # Install packages
 apt-get install -y ca-certificates curl gnupg net-tools dnsutils
-
 # Set timezone to Europe/Berlin
 timedatectl set-timezone Europe/Berlin
-
-
-
 # Ask the user if they want to install Docker
 read -p "Do you want to install Docker (Y/n)? " answer
 case ${answer:0:1} in
@@ -53,7 +43,6 @@ case ${answer:0:1} in
         echo "Docker will not be installed."
     ;;
 esac
-
 # Ask the user if they want to reboot
 read -p "Do you want to reboot the system now (Y/n)? " answer
 case ${answer:0:1} in
