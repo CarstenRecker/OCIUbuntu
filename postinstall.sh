@@ -1,8 +1,10 @@
 #!/bin/bash
 
-arch=dpkg --print-architecture
-echo $arch
-sleep 10
+# Check if script is run as root
+if [ "$EUID" -ne 0 ]
+  then echo "Please run as root"
+  exit
+fi
 
 # Update the OS
 apt-get update -y
