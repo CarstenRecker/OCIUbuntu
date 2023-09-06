@@ -31,3 +31,15 @@ apt-get update -y
 
 # Install Docker
 apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+
+# Ask the user if they want to reboot
+read -p "Do you want to reboot the system now (Y/n)? " answer
+case ${answer:0:1} in
+    y|Y )
+        echo "The system is rebooting now..."
+        reboot
+    ;;
+    * )
+        echo "The system will not reboot."
+    ;;
+esac
