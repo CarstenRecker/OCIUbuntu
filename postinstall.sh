@@ -6,6 +6,15 @@ if [ "$EUID" -ne 0 ]
   exit
 fi
 
+# Check if needrestart is installed
+if dpkg -l | grep needrestart > /dev/null; then
+    # Change the configuration
+    sed -i "s/#\$nrconf{restart} = 'i';/\$nrconf{restart} = 'a';/g" /etc/needrestart/needrestart.conf
+else
+    echo "needrestart is not installed."
+fi
+
+
 # Update the OS
 apt-get update -y
 apt-get upgrade -y
