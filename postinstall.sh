@@ -6,6 +6,7 @@ if [ "$EUID" -ne 0 ]
   exit
 fi
 
+# Set restart of services to automatic, when using apt
 # Check if needrestart is installed
 if dpkg -l | grep needrestart > /dev/null; then
     # Change the configuration
@@ -20,7 +21,7 @@ apt-get update -y
 apt-get upgrade -y
 
 # Install packages
-apt-get install ca-certificates curl gnupg net-tools dnsutils
+apt-get install -y ca-certificates curl gnupg net-tools dnsutils
 
 # Set timezone to Europe/Berlin
 timedatectl set-timezone Europe/Berlin
