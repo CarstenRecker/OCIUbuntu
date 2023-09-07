@@ -42,6 +42,22 @@ case ${answer:0:1} in
     * )
         echo "Docker will not be installed."
     ;;
+# Ask the user if they want to open any ports
+read -p "Do you want to open any ports (Y/n)? " answer
+case ${answer:0:1} in
+    y|Y )
+        read -p "Enter the port numbers you want to open, separated by commas: " ports
+        IFS=',' read -ra ADDR <<< "$ports"
+        for port in "${ADDR[@]}"; do
+            iptables -A INPUT -p tcp --dport $port -j ACCEPT
+            echo "Port $port is now open."
+        done
+    ;;
+    * )
+        echo "No ports will be opened."
+    ;;
+esac
+
 esac
 # Ask the user if they want to reboot
 read -p "Do you want to reboot the system now (Y/n)? " answer
