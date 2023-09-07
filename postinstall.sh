@@ -42,6 +42,7 @@ case ${answer:0:1} in
     * )
         echo "Docker will not be installed."
     ;;
+    esac
 # Ask the user if they want to open any ports
 read -p "Do you want to open any ports (Y/n)? " answer
 case ${answer:0:1} in
