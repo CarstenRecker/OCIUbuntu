@@ -57,7 +57,6 @@ case ${answer:0:1} in
     * )
         echo "No ports will be opened."
     ;;
-esac
 
 esac
 # Ask the user if they want to reboot
